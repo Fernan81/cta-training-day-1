@@ -6,11 +6,10 @@ const multiplyRoute = (req, reply) => {
             message: 'we do not like num 5',
             extension: {
                 path: "$.input.num1",
-                code:666
+                code: 666
             }
         })
     }
-
 
     const result = req.body.input.num1 * req.body.input.num2;
     reply.send({result});
