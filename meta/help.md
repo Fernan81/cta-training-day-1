@@ -10,3 +10,7 @@ start nodemon:
     npm install -D nodemon (if not install)
     npm start
 
+star dockerfile:
+
+    docker build . (in dir multi)
+    docker-compose up --build

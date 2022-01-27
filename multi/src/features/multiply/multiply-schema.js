@@ -9,20 +9,20 @@ const multiplySchema = {
                 properties: {
                     num1: {type: 'number'},
                     num2: {type: 'number'}
-                }
+                },
+            required: [ 'num1', 'num2' ]
             }
-        }
+        },
+        required: [ 'input' ]
     },
     response: {
-        200:{
+        200: {
             type: 'object',
-            required: ['result'],
             properties: {
-                result: {type:'number'}
-            }
+                result: { type: 'number' }
+            },
+            required: [ 'result' ]
         }
-        
-
     }
 }
 
