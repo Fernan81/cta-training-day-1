@@ -9,7 +9,7 @@ const GET_PUBLIC_USERS = `
     }
 `;
 
-const whoAreWeRoute = async (req, reply) => {
+const nameRoute = async (req, reply) => {
     
     const targetUrl = req.getConfig('apollo.client.config.uri');
 
@@ -17,12 +17,13 @@ const whoAreWeRoute = async (req, reply) => {
         query : GET_PUBLIC_USERS
     });
 
-
     const names = res.data.data.users 
         .map(user => user.name)
-        .join(', ');
+        .map(name => name.toUpperCase());
 
-    reply.send("we are cool " + names);
+    reply.send({
+        items: names
+    });
 } 
 
-module.exports = whoAreWeRoute;
+module.exports = nameRoute;

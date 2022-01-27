@@ -2,7 +2,7 @@
 
 DROP TABLE IF EXISTS "expenses";
 DROP SEQUENCE IF EXISTS expenses_id_seq;
-CREATE SEQUENCE expenses_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 START 5 CACHE 1;
+CREATE SEQUENCE expenses_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
 
 CREATE TABLE "public"."expenses" (
     "id" integer DEFAULT nextval('expenses_id_seq') NOT NULL,
@@ -24,22 +24,24 @@ INSERT INTO "expenses" ("id", "user_id", "created_at", "amount", "notes") VALUES
 
 DROP TABLE IF EXISTS "users";
 DROP SEQUENCE IF EXISTS users_id_seq;
-CREATE SEQUENCE users_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 START 4 CACHE 1;
+CREATE SEQUENCE users_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
 
 CREATE TABLE "public"."users" (
     "id" integer DEFAULT nextval('users_id_seq') NOT NULL,
     "name" text NOT NULL,
     "created_at" timestamptz DEFAULT now() NOT NULL,
+    "is_public" boolean DEFAULT false,
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
 COMMENT ON TABLE "public"."users" IS 'It contains my users';
 
-INSERT INTO "users" ("id", "name", "created_at") VALUES
-(2,	'silvia',	'2022-01-25 16:38:35.902582+00'),
-(3,	'franc',	'2022-01-25 16:38:43.302965+00'),
-(4,	'antonio',	'2022-01-25 16:42:44.55125+00');
+INSERT INTO "users" ("id", "name", "created_at", "is_public") VALUES
+(4,	'antonio',	'2022-01-25 16:42:44.55125+00',	'1'),
+(3,	'franc',	'2022-01-25 16:38:43.302965+00',	'1'),
+(2,	'silvia',	'2022-01-25 16:38:35.902582+00',	'1'),
+(5,	'pepe',	'2022-01-27 11:10:15.972171+00',	'1');
 
 ALTER TABLE ONLY "public"."expenses" ADD CONSTRAINT "expenses_user_id_fkey" FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE NOT DEFERRABLE;
 
--- 2022-01-25 17:05:07.520544+00
+-- 2022-01-27 14:10:28.12725+00
