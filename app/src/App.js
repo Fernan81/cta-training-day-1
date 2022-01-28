@@ -1,12 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
-
-import { HellowWorld } from './HelloWorld';
+import UserInsert from './AddUser';
 
 function App() {
+  
   return (
-    <div className="App">
-      
+    <div>
+      <UserInsert />
     </div>
   );
 }

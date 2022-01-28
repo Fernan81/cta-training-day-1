@@ -16,6 +16,10 @@ const infoFeature = {
         method: 'POST',
         url: '/name',
         handler: nameRoute
+      },{
+        method: 'POST',
+        url: '/name',
+        handler: nameRoute
       }]
 }
 
